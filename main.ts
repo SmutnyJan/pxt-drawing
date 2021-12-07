@@ -8,6 +8,16 @@ input.onButtonPressed(Button.A, function () {
     x = x % 5
     stateBeforeArrive = led.point(x, y)
 })
+input.onButtonPressed(Button.AB, function () {
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+    stateBeforeArrive = false    
+})
 input.onButtonPressed(Button.B, function () {
     if (stateBeforeArrive) {
         led.plot(x, y)
