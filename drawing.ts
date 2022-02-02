@@ -21,7 +21,7 @@ namespace Malovani {
     /**
         * Překreslí aktuální bod
         */
-    //% block="Prekreslit"
+    //% block="Překreslit bod"
 
     export function Prekreslit(): void {
         stateBeforeArrive = !(stateBeforeArrive)
