@@ -1,23 +1,23 @@
-input.onPinPressed(TouchPin.P0, function () {
-    Malovani.PrepnoutKurzor()
-})
-input.onButtonPressed(Button.A, function () {
-    Malovani.PohybDoleva()
-})
-input.onPinPressed(TouchPin.P2, function () {
-    Malovani.PohybDolu()
-})
-input.onButtonPressed(Button.AB, function () {
-    Malovani.Prekreslit()
-})
-input.onButtonPressed(Button.B, function () {
+input.onGesture(Gesture.TiltRight, function () {
     Malovani.PohybDoprava()
 })
-input.onGesture(Gesture.Shake, function () {
+input.onGesture(Gesture.LogoDown, function () {
+    Malovani.PohybDolu()
+})
+input.onButtonPressed(Button.A, function () {
+    Malovani.PrepnoutKurzor()
+})
+input.onGesture(Gesture.TiltLeft, function () {
+    Malovani.PohybDoleva()
+})
+input.onGesture(Gesture.LogoUp, function () {
+    Malovani.PohybNahoru()
+})
+input.onButtonPressed(Button.B, function () {
     Malovani.Vymazat()
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    Malovani.PohybNahoru()
+    Malovani.Prekreslit()
 })
 basic.forever(function () {
     Malovani.BlikaniKurzoru()
