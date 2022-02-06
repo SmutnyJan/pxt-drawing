@@ -44,7 +44,7 @@ namespace Malovani {
     }
 
     /**
-    * Zapne/Vypne Kurzor
+    * Zapne/vypne kurzor
     */
     //% block="Přepnout kurzor"
 
@@ -58,7 +58,7 @@ namespace Malovani {
     }
 
     /**
-    * Blikání kurzor
+    * Blikání kurzoru
     */
     //% block="Blikat kurzorem"
 
