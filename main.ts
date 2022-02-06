@@ -21,5 +21,4 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
 })
 basic.forever(function () {
     Malovani.BlikaniKurzoru()
-    basic.showNumber(0)
 })
