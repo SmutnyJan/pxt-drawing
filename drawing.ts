@@ -23,7 +23,7 @@ namespace Malovani {
         */
     //% block="Překreslit bod"
 
-    export function Prekreslit(): void {
+    export function prekreslit(): void {
         stateBeforeArrive = !(stateBeforeArrive)
     }
 
@@ -32,7 +32,7 @@ namespace Malovani {
     */
     //% block="Vymazat kresbu"
 
-    export function Vymazat(): void {
+    export function vymazat(): void {
         basic.showLeds(`
         . . . . .
         . . . . .
@@ -48,7 +48,7 @@ namespace Malovani {
     */
     //% block="Přepnout kurzor"
 
-    export function PrepnoutKurzor(): void {
+    export function prepnoutKurzor(): void {
         showCursor = !(showCursor)
         if (stateBeforeArrive) {
             led.plot(x, y)
@@ -62,7 +62,7 @@ namespace Malovani {
     */
     //% block="Blikat kurzorem"
 
-    export function BlikaniKurzoru(): void {
+    export function blikaniKurzoru(): void {
         if (showCursor) {
             led.toggle(x, y)
             basic.pause(100)
@@ -74,8 +74,8 @@ namespace Malovani {
     */
     //% block="Posunout kurzor dolu"
 
-    export function PohybDolu(): void {
-        Pohyb(x, y + 1);
+    export function pohybDolu(): void {
+        pohyb(x, y + 1);
     }
 
     /**
@@ -83,8 +83,8 @@ namespace Malovani {
     */
     //% block="Posunout kurzor nahoru"
 
-    export function PohybNahoru(): void {
-        Pohyb(x, y - 1);
+    export function pohybNahoru(): void {
+        pohyb(x, y - 1);
     }
 
     /**
@@ -92,8 +92,8 @@ namespace Malovani {
     */
     //% block="Posunout kurzor doprava"
 
-    export function PohybDoprava(): void {
-        Pohyb(x + 1, y);
+    export function pohybDoprava(): void {
+        pohyb(x + 1, y);
     }
 
     /**
@@ -101,12 +101,12 @@ namespace Malovani {
     */
     //% block="Posunout kurzor doleva"
 
-    export function PohybDoleva(): void {
-        Pohyb(x - 1, y);
+    export function pohybDoleva(): void {
+        pohyb(x - 1, y);
     }
 
     
-    function Pohyb(newX: number, newY: number): void {
+    function pohyb(newX: number, newY: number): void {
         if (showCursor) {
             if (stateBeforeArrive) {
                 led.plot(x, y)

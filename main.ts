@@ -1,24 +1,24 @@
 input.onGesture(Gesture.TiltRight, function () {
-    Malovani.PohybDoprava()
+    Malovani.pohybDoprava()
 })
 input.onGesture(Gesture.LogoDown, function () {
-    Malovani.PohybNahoru()
+    Malovani.pohybNahoru()
 })
 input.onButtonPressed(Button.A, function () {
-    Malovani.PrepnoutKurzor()
+    Malovani.prepnoutKurzor()
 })
 input.onGesture(Gesture.TiltLeft, function () {
-    Malovani.PohybDoleva()
+    Malovani.pohybDoleva()
 })
 input.onGesture(Gesture.LogoUp, function () {
-    Malovani.PohybDolu()
+    Malovani.pohybDolu()
 })
 input.onButtonPressed(Button.B, function () {
-    Malovani.Vymazat()
+    Malovani.vymazat()
 })
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
-    Malovani.Prekreslit()
+    Malovani.prekreslit()
 })
 basic.forever(function () {
-    Malovani.BlikaniKurzoru()
+    Malovani.blikaniKurzoru()
 })
