@@ -14,24 +14,24 @@ enum Smer {
 /**
  * Custom blocks
  */
-//% weight=100 color=#25E422 icon="\uf1fc"
+//% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
 namespace Malovani {
-    let stateBeforeArrive = false
+    let predchoziStav = false
     let y = 0
     let x = 0
-    let showCursor = false
-    showCursor = true
+    let jeVidetKurzor = false
+    jeVidetKurzor = true
     x = 2
     y = 2
-    stateBeforeArrive = led.point(x, y)
+    predchoziStav = led.point(x, y)
 
     /**
-        * Překreslí aktuální bod
-        */
+    * Překreslí aktuální bod
+    */
     //% block="Překreslit bod"
 
     export function prekreslit(): void {
-        stateBeforeArrive = !(stateBeforeArrive)
+        predchoziStav = !(predchoziStav)
     }
 
     /**
@@ -47,7 +47,7 @@ namespace Malovani {
         . . . . .
         . . . . .
         `)
-        stateBeforeArrive = false
+        predchoziStav = false
     }
 
     /**
@@ -56,8 +56,8 @@ namespace Malovani {
     //% block="Přepnout kurzor"
 
     export function prepnoutKurzor(): void {
-        showCursor = !(showCursor)
-        if (stateBeforeArrive) {
+        jeVidetKurzor = !(jeVidetKurzor)
+        if (predchoziStav) {
             led.plot(x, y)
         } else {
             led.unplot(x, y)
@@ -70,7 +70,7 @@ namespace Malovani {
     //% block="Blikat kurzorem"
 
     export function blikaniKurzoru(): void {
-        if (showCursor) {
+        if (jeVidetKurzor) {
             led.toggle(x, y)
             basic.pause(100)
         }
@@ -78,6 +78,7 @@ namespace Malovani {
 
     /**
     * Pohne kurzorem do daného směru
+    * @smer Směr, do kterého se má kurzor pohnout
     */
     //% block="Posunout kurzor smerem %smer"
 
@@ -98,26 +99,26 @@ namespace Malovani {
         }
     }
     
-    function pohyb(newX: number, newY: number): void {
-        if (showCursor) {
-            if (stateBeforeArrive) {
+    function pohyb(noveX: number, noveY: number): void {
+        if (jeVidetKurzor) {
+            if (predchoziStav) {
                 led.plot(x, y)
             } else {
                 led.unplot(x, y)
             }
-            x = newX
-            y = newY
-            if (newX > 4) {
+            x = noveX
+            y = noveY
+            if (noveX > 4) {
                 x = 0
-            } else if (newX < 0) {
+            } else if (noveX < 0) {
                 x = 4
             }
-            if (newY > 4) {
+            if (noveY > 4) {
                 y = 0
-            } else if (newY < 0) {
+            } else if (noveY < 0) {
                 y = 4
             }
-            stateBeforeArrive = led.point(x, y)
+            predchoziStav = led.point(x, y)
         }
     }
 
