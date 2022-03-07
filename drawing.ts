@@ -3,6 +3,13 @@
  * Přečtěte si více na https://makecode.microbit.org/blocks/custom
  */
 
+enum Smer {
+    Nahoru = 1,
+    Dolu = 2,
+    Doleva = 3,
+    Doprava = 4,
+}
+
 
 /**
  * Custom blocks
@@ -70,41 +77,26 @@ namespace Malovani {
     }
 
     /**
-    * Pohne kurzorem dolů
+    * Pohne kurzorem do daného směru
     */
-    //% block="Posunout kurzor dolu"
+    //% block="Posunout kurzor smerem %smer"
 
-    export function pohybDolu(): void {
-        pohyb(x, y + 1);
+    export function pohybDoSmeru(smer: Smer): void {
+        switch (smer) {
+            case Smer.Nahoru:
+                pohyb(x, y + 1);
+                break;
+            case Smer.Dolu:
+                pohyb(x, y - 1);
+                break;
+            case Smer.Doprava:
+                pohyb(x + 1, y);
+                break;
+            case Smer.Doleva:
+                pohyb(x - 1, y);
+                break;
+        }
     }
-
-    /**
-    * Pohne kurzorem nahoru
-    */
-    //% block="Posunout kurzor nahoru"
-
-    export function pohybNahoru(): void {
-        pohyb(x, y - 1);
-    }
-
-    /**
-    * Pohne kurzorem doprava
-    */
-    //% block="Posunout kurzor doprava"
-
-    export function pohybDoprava(): void {
-        pohyb(x + 1, y);
-    }
-
-    /**
-    * Pohne kurzorem doleva
-    */
-    //% block="Posunout kurzor doleva"
-
-    export function pohybDoleva(): void {
-        pohyb(x - 1, y);
-    }
-
     
     function pohyb(newX: number, newY: number): void {
         if (showCursor) {

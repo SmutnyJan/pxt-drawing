@@ -1,17 +1,17 @@
 input.onGesture(Gesture.TiltRight, function () {
-    Malovani.pohybDoprava()
+    Malovani.pohybDoSmeru(Smer.Doprava)
 })
 input.onGesture(Gesture.LogoDown, function () {
-    Malovani.pohybNahoru()
+    Malovani.pohybDoSmeru(Smer.Dolu)
 })
 input.onButtonPressed(Button.A, function () {
     Malovani.prepnoutKurzor()
 })
 input.onGesture(Gesture.TiltLeft, function () {
-    Malovani.pohybDoleva()
+    Malovani.pohybDoSmeru(Smer.Doleva)
 })
 input.onGesture(Gesture.LogoUp, function () {
-    Malovani.pohybDolu()
+    Malovani.pohybDoSmeru(Smer.Nahoru)
 })
 input.onButtonPressed(Button.B, function () {
     Malovani.vymazat()
