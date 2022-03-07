@@ -1,8 +1,3 @@
-/**
- * Použijte tento soubor k definování personalizovaných funkcí a bloků.
- * Přečtěte si více na https://makecode.microbit.org/blocks/custom
- */
-
 enum Smer {
     Nahoru = 1,
     Dolu = 2,
@@ -10,10 +5,6 @@ enum Smer {
     Doprava = 4,
 }
 
-
-/**
- * Custom blocks
- */
 //% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
 namespace Malovani {
     let predchoziStav = false
