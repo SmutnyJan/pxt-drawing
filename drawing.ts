@@ -6,23 +6,23 @@ enum Smer {
 }
 
 //% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
-namespace Malovani {
-    let predchoziStav = false
+namespace drawing {
+    let previousState = false
     let y = 0
     let x = 0
-    let jeVidetKurzor = false
-    jeVidetKurzor = true
+    let isCursorVisible = false
+    isCursorVisible = true
     x = 2
     y = 2
-    predchoziStav = led.point(x, y)
+    previousState = led.point(x, y)
 
     /**
     * Překreslí aktuální bod
     */
     //% block="Překreslit bod"
 
-    export function prekreslit(): void {
-        predchoziStav = !(predchoziStav)
+    export function redraw(): void {
+        previousState = !(previousState)
     }
 
     /**
@@ -30,7 +30,7 @@ namespace Malovani {
     */
     //% block="Vymazat kresbu"
 
-    export function vymazat(): void {
+    export function clear(): void {
         basic.showLeds(`
         . . . . .
         . . . . .
@@ -38,7 +38,7 @@ namespace Malovani {
         . . . . .
         . . . . .
         `)
-        predchoziStav = false
+        previousState = false
     }
 
     /**
@@ -46,9 +46,9 @@ namespace Malovani {
     */
     //% block="Přepnout kurzor"
 
-    export function prepnoutKurzor(): void {
-        jeVidetKurzor = !(jeVidetKurzor)
-        if (predchoziStav) {
+    export function toogleCursor(): void {
+        isCursorVisible = !(isCursorVisible)
+        if (previousState) {
             led.plot(x, y)
         } else {
             led.unplot(x, y)
@@ -60,8 +60,8 @@ namespace Malovani {
     */
     //% block="Blikat kurzorem"
 
-    export function blikaniKurzoru(): void {
-        if (jeVidetKurzor) {
+    export function blinkCursor(): void {
+        if (isCursorVisible) {
             led.toggle(x, y)
             basic.pause(100)
         }
@@ -69,47 +69,47 @@ namespace Malovani {
 
     /**
     * Pohne kurzorem do daného směru
-    * @smer Směr, do kterého se má kurzor pohnout
+    * @direction Směr, do kterého se má kurzor pohnout
     */
-    //% block="Posunout kurzor smerem %smer"
+    //% block="Posunout kurzor smerem %direction"
 
-    export function pohybDoSmeru(smer: Smer): void {
-        switch (smer) {
+    export function moveInDirection(direction: Smer): void {
+        switch (direction) {
             case Smer.Nahoru:
-                pohyb(x, y + 1);
+                move(x, y + 1);
                 break;
             case Smer.Dolu:
-                pohyb(x, y - 1);
+                move(x, y - 1);
                 break;
             case Smer.Doprava:
-                pohyb(x + 1, y);
+                move(x + 1, y);
                 break;
             case Smer.Doleva:
-                pohyb(x - 1, y);
+                move(x - 1, y);
                 break;
         }
     }
     
-    function pohyb(noveX: number, noveY: number): void {
-        if (jeVidetKurzor) {
-            if (predchoziStav) {
+    function move(newX: number, newY: number): void {
+        if (isCursorVisible) {
+            if (previousState) {
                 led.plot(x, y)
             } else {
                 led.unplot(x, y)
             }
-            x = noveX
-            y = noveY
-            if (noveX > 4) {
+            x = newX
+            y = newY
+            if (newX > 4) {
                 x = 0
-            } else if (noveX < 0) {
+            } else if (newX < 0) {
                 x = 4
             }
-            if (noveY > 4) {
+            if (newY > 4) {
                 y = 0
-            } else if (noveY < 0) {
+            } else if (newY < 0) {
                 y = 4
             }
-            predchoziStav = led.point(x, y)
+            previousState = led.point(x, y)
         }
     }
 
