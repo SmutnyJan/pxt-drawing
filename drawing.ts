@@ -1,7 +1,7 @@
 
 //% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
 namespace drawing {
-    enum Direction {
+    enum MoveDirection {
         //% block="Nahoru"
         Up = 1,
         //% block="Dolu"
@@ -78,18 +78,18 @@ namespace drawing {
     */
     //% block="Posunout kurzor smerem %direction"
 
-    export function moveInDirection(direction: Direction): void {
+    export function moveInDirection(direction: MoveDirection): void {
         switch (direction) {
-            case Direction.Up:
+            case MoveDirection.Up:
                 move(x, y + 1);
                 break;
-            case Direction.Down:
+            case MoveDirection.Down:
                 move(x, y - 1);
                 break;
-            case Direction.Right:
+            case MoveDirection.Right:
                 move(x + 1, y);
                 break;
-            case Direction.Left:
+            case MoveDirection.Left:
                 move(x - 1, y);
                 break;
         }
