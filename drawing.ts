@@ -1,12 +1,17 @@
-enum Smer {
-    Nahoru = 1,
-    Dolu = 2,
-    Doleva = 3,
-    Doprava = 4,
-}
 
 //% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
 namespace drawing {
+    enum Direction {
+        //% block="Nahoru"
+        Up = 1,
+        //% block="Dolu"
+        Down = 2,
+       //% block="Doleva"
+        Left = 3,
+        //% block="Doprava"
+        Right = 4,
+    }
+
     let previousState = false
     let y = 0
     let x = 0
@@ -73,18 +78,18 @@ namespace drawing {
     */
     //% block="Posunout kurzor smerem %direction"
 
-    export function moveInDirection(direction: Smer): void {
+    export function moveInDirection(direction: Direction): void {
         switch (direction) {
-            case Smer.Nahoru:
+            case Direction.Up:
                 move(x, y + 1);
                 break;
-            case Smer.Dolu:
+            case Direction.Down:
                 move(x, y - 1);
                 break;
-            case Smer.Doprava:
+            case Direction.Right:
                 move(x + 1, y);
                 break;
-            case Smer.Doleva:
+            case Direction.Left:
                 move(x - 1, y);
                 break;
         }
