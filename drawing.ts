@@ -1,16 +1,16 @@
+enum MoveDirection {
+    //% block="Nahoru"
+    Up = 1,
+    //% block="Dolu"
+    Down = 2,
+    //% block="Doleva"
+    Left = 3,
+    //% block="Doprava"
+    Right = 4,
+}
 
 //% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
 namespace drawing {
-    enum MoveDirection {
-        //% block="Nahoru"
-        Up = 1,
-        //% block="Dolu"
-        Down = 2,
-       //% block="Doleva"
-        Left = 3,
-        //% block="Doprava"
-        Right = 4,
-    }
 
     let previousState = false
     let y = 0
@@ -94,7 +94,7 @@ namespace drawing {
                 break;
         }
     }
-    
+
     function move(newX: number, newY: number): void {
         if (isCursorVisible) {
             if (previousState) {
