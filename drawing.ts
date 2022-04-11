@@ -58,7 +58,7 @@ namespace drawing {
     */
     //% block="Přepne kurzor || na [%newX, %newY]"
 
-    export function toogleCursor(newX: number, newY: number): void {
+    export function toogleCursor(newX?: number, newY?: number): void {
         if (newX == null) {
             newX = privateX
         }
@@ -80,7 +80,7 @@ namespace drawing {
     */
     //% block="Blikat kurzorem || na [%newX, %newY]"
 
-    export function blinkCursor(newX: number, newY: number): void {
+    export function blinkCursor(newX?: number, newY?: number): void {
         if (newX != null) {
             privateX = newX;
         }
