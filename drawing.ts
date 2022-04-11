@@ -21,13 +21,18 @@ namespace drawing {
     y = 2
     previousState = led.point(x, y)
 
+    let privateX = 0
+    let privateY = 0
+
     /**
     * Překreslí aktuální bod
     */
     //% block="Překreslit bod"
 
     export function redraw(): void {
-        previousState = !(previousState)
+        if (isCursorVisible) {
+            previousState = !(previousState)
+        }
     }
 
     /**
@@ -47,29 +52,63 @@ namespace drawing {
     }
 
     /**
-    * Zapne/vypne kurzor
+    * Přepne kurzor na zvolené souřadnici
+    * @newX Zvolená souřadnice
+    * @newY Zvolená souřadnice
     */
-    //% block="Přepnout kurzor"
+    //% block="Přepne kurzor || na [%newX, %newY]"
 
-    export function toogleCursor(): void {
+    export function toogleCursor(newX: number, newY: number): void {
+        if (newX == null) {
+            newX = privateX
+        }
+        if (newY == null) {
+            newY = privateY
+        }
         isCursorVisible = !(isCursorVisible)
         if (previousState) {
-            led.plot(x, y)
+            led.plot(newX, newY)
         } else {
-            led.unplot(x, y)
+            led.unplot(newX, newY)
         }
     }
 
     /**
-    * Blikání kurzoru
+    * Blikne kurzorem na zvolené souřadnici
+    * @newX Zvolená souřadnice
+    * @newY Zvolená souřadnice
     */
-    //% block="Blikat kurzorem"
+    //% block="Blikat kurzorem || na [%newX, %newY]"
 
-    export function blinkCursor(): void {
-        if (isCursorVisible) {
-            led.toggle(x, y)
-            basic.pause(100)
+    export function blinkCursor(newX: number, newY: number): void {
+        if (newX != null) {
+            privateX = newX;
         }
+        if (newY != null) {
+            privateY = newY;
+        }
+        if (isCursorVisible) {
+            led.toggle(newX, newY)
+            basic.pause(100)
+
+        }
+    }
+
+    /**
+    * Pohne kurzorem na zvolené souřadnice
+    * @newX Zvolená souřadnice
+    * @newY Zvolená souřadnice
+    */
+    //% block="Pohyb na [%newX, %newY]"
+    export function moveAt(newX: number, newY: number): void {
+        if (previousState) {
+            led.plot(privateX, privateY)
+        } else {
+            led.unplot(privateX, privateY)
+        }
+        privateX = newX
+        privateY = newY
+        previousState = led.point(privateX, privateY)
     }
 
     /**
@@ -114,6 +153,8 @@ namespace drawing {
             } else if (newY < 0) {
                 y = 4
             }
+            privateX = x
+            privateY = y
             previousState = led.point(x, y)
         }
     }
