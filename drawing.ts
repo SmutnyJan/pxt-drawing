@@ -12,17 +12,11 @@ enum MoveDirection {
 //% weight=100 color=#25E422 icon="\uf1fc" block="Malování"
 namespace drawing {
 
-    let previousState = false
-    let y = 0
-    let x = 0
-    let isCursorVisible = false
-    isCursorVisible = true
-    x = 2
-    y = 2
-    previousState = led.point(x, y)
+    let isCursorVisible = true
 
-    let privateX = 0
-    let privateY = 0
+    let privateX = 2
+    let privateY = 2
+    let previousState = led.point(privateX, privateY)
 
     /**
     * Překreslí aktuální bod
@@ -62,14 +56,15 @@ namespace drawing {
         if (newX == null) {
             newX = privateX
         }
+
         if (newY == null) {
             newY = privateY
         }
         isCursorVisible = !(isCursorVisible)
         if (previousState) {
-            led.plot(newX, newY)
+            led.plot(privateX, privateY)
         } else {
-            led.unplot(newX, newY)
+            led.unplot(privateX, privateY)
         }
     }
 
@@ -84,11 +79,12 @@ namespace drawing {
         if (newX != null) {
             privateX = newX;
         }
+
         if (newY != null) {
             privateY = newY;
         }
         if (isCursorVisible) {
-            led.toggle(newX, newY)
+            led.toggle(privateX, privateY)
             basic.pause(100)
 
         }
@@ -120,42 +116,41 @@ namespace drawing {
     export function moveInDirection(direction: MoveDirection): void {
         switch (direction) {
             case MoveDirection.Up:
-                move(x, y + 1);
+                move(privateX, privateY + 1);
                 break;
             case MoveDirection.Down:
-                move(x, y - 1);
+                move(privateX, privateY - 1);
                 break;
             case MoveDirection.Right:
-                move(x + 1, y);
+                move(privateX + 1, privateY);
                 break;
             case MoveDirection.Left:
-                move(x - 1, y);
+                move(privateX - 1, privateY);
                 break;
         }
     }
 
     function move(newX: number, newY: number): void {
         if (isCursorVisible) {
+            serial.writeLine(newX + "")
             if (previousState) {
-                led.plot(x, y)
+                led.plot(privateX, privateY)
             } else {
-                led.unplot(x, y)
+                led.unplot(privateX, privateY)
             }
-            x = newX
-            y = newY
+            privateX = newX
+            privateY = newY
             if (newX > 4) {
-                x = 0
+                privateX = 0
             } else if (newX < 0) {
-                x = 4
+                privateX = 4
             }
             if (newY > 4) {
-                y = 0
+                privateY = 0
             } else if (newY < 0) {
-                y = 4
+                privateY = 4
             }
-            privateX = x
-            privateY = y
-            previousState = led.point(x, y)
+            previousState = led.point(privateX, privateY)
         }
     }
 
