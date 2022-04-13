@@ -1,31 +1,105 @@
+# Caesarova šifra
 
-> Otevřít tuto stránku v aplikaci [https://smutnyjan.github.io/pxt-drawing/](https://smutnyjan.github.io/pxt-drawing/)
+## Namespace
+```
+drawing
+```
+## Popis
+Rozšíření poskytuje metody pro malování na 5×5 LED pole
+ 
+## Metody
+#### Překreslit bod
+```
+function redraw(): void
+```
+- Překreslí aktuální bod
+- Bez parametrů
+- Bez návratové hodnoty
 
-## Použít jako rozšíření
+#### Vymazat kresbu
+```
+function clear(): void
+```
+- Vypne všechny LED (uvedení do výchozího stavu)
+- Bez parametrů
+- Bez návratové hodnoty
 
-Toto úložiště lze přidat jako **rozšíření** v aplikaci MakeCode.
+#### Přepnout kurzor || na [%newX, %newY]
+```
+function toogleCursor(newX?: number, newY?: number): void
+```
+- Zapne/vypne blikání kurzoru (pokud si bude někdo chtít kresbu prohlédnout, mohl by kurzor překážet)
+- Blok je možno rozšířit o dva parametry (x a y), záleží na obtížnosti úlohy
+- Parametry:
+    - nepovinný parametr nová souřadnice X (číslo)
+    - nepovinný parametr nová souřadnice Y (číslo)
+- Bez návratové hodnoty
+ 
+#### Blikat kurzorem || na [%newX, %newY]
+```
+function blinkCursor(newX?: number, newY?: number): void
+```
+- Problikne kurzorem (umístí se do smyčky „opakuj stále“)
+- Blok je možno rozšířit o dva parametry (x a y), záleží na obtížnosti úlohy
+- Parametry:
+    - nepovinný parametr nová souřadnice X (číslo)
+    - nepovinný parametr nová souřadnice Y (číslo)
+- Bez návratové hodnoty
 
-* otevřít [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* klikněte na možnost **Nový projekt**
-* klikněte na možnost **Rozšíření** v nabídce s ozubeným kolem
-* vyhledat **https://github.com/smutnyjan/pxt-drawing** a importovat
+#### Posunout kurzor smerem %direction
+```
+function moveInDirection(direction: MoveDirection): void
+```
+- Pohne kurzorem na danou stranu
+- Parametry:
+    - směr (enum)
+- Bez návratové hodnoty
 
-## Upravit tento projekt ![Odznak stavu sestavení](https://github.com/smutnyjan/pxt-drawing/workflows/MakeCode/badge.svg)
+#### Pohyb na [%newX, %newY]
+```
+move(newX: number, newY: number): void
+```
+- Pohne kurzorem na danou souřadnici
+- Parametry:
+    - souřadnice X (číslo)
+    - souřadnice Y (číslo)
+- Bez návratové hodnoty
 
-Slouží k úpravě tohoto úložiště v aplikaci MakeCode.
 
-* otevřít [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* klikněte na možnost **Import** a poté na **Import adresy URL**
-* vložte **https://github.com/smutnyjan/pxt-drawing** a klikněte na možnost import
+## Příklady
 
-## Náhled bloků
+### Použití metod pro zašifrování a dešifrování textu
 
-Tento obrázek znázorňuje kód z Bloků od posledního potvrzení v hlavní verzi.
-Tento obrázek se může aktualizovat až za několik minut.
+#### Bloky
+![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/usageexample.png)
+#### Kód
+```
+basic.showString(cipher.encryptText("ahoj", -2))
+basic.showString(cipher.decryptText("fmto", 5))
+```
 
-![Vykreslený náhled bloků](https://github.com/smutnyjan/pxt-drawing/raw/master/.github/makecode/blocks.png)
+### Použití metod pro zašifrování a dešifrování znaku
+#### Bloky
+![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/usageexample2.png)
+![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/encode.png)
+![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/decode.png)
 
-#### Metadata (slouží k vyhledávání, vykreslování)
+#### Kód
+```
+function Zasifruj (text: string, posun: number) {
+    for (let i = 0; i <= text.length - 1; i++) {
+        konecnyText = "" + konecnyText + cipher.encryptCharacter(text.charAt(i), posun)
+    }
+    return konecnyText
+}
+function Desifruj (text: string, posun: number) {
+    for (let j = 0; j <= text.length - 1; j++) {
+        konecnyText = "" + konecnyText + cipher.decryptCharacter(text.charAt(j), posun)
+    }
+    return konecnyText
+}
+let konecnyText = ""
+basic.showString("" + (Zasifruj("microbit", 5)))
+```
 
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+
