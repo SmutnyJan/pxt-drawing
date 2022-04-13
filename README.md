@@ -68,38 +68,88 @@ move(newX: number, newY: number): void
 
 ## Příklady
 
-### Použití metod pro zašifrování a dešifrování textu
+### Malovaní za použití zkrácených verzí bloků
 
 #### Bloky
-![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/usageexample.png)
+![Jednoduchý příklad](https://github.com/SmutnyJan/pxt-drawing/images/easyexample.png)
 #### Kód
 ```
-basic.showString(cipher.encryptText("ahoj", -2))
-basic.showString(cipher.decryptText("fmto", 5))
+input.onGesture(Gesture.TiltRight, function () {
+    drawing.moveInDirection(Smer.Doprava)
+})
+input.onGesture(Gesture.LogoDown, function () {
+    drawing.moveInDirection(Smer.Dolu)
+})
+input.onButtonPressed(Button.A, function () {
+    drawing.toogleCursor()
+})
+input.onGesture(Gesture.TiltLeft, function () {
+    drawing.moveInDirection(Smer.Doleva)
+})
+input.onGesture(Gesture.LogoUp, function () {
+    drawing.moveInDirection(Smer.Nahoru)
+})
+input.onButtonPressed(Button.B, function () {
+    drawing.clear()
+})
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    drawing.redraw()
+})
+basic.forever(function () {
+    drawing.blinkCursor()
+})
 ```
 
-### Použití metod pro zašifrování a dešifrování znaku
+### Malovaní za použití vlastních proměnných x a y
+
 #### Bloky
-![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/usageexample2.png)
-![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/encode.png)
-![Řešení metody pro zašifrování](https://github.com/SmutnyJan/pxt-caesar-cipher-extension/blob/master/images/decode.png)
+![Těžší příklad](https://github.com/SmutnyJan/pxt-drawing/images/hardexample.png)
+
 
 #### Kód
 ```
-function Zasifruj (text: string, posun: number) {
-    for (let i = 0; i <= text.length - 1; i++) {
-        konecnyText = "" + konecnyText + cipher.encryptCharacter(text.charAt(i), posun)
+let x = 0
+let y = 0
+input.onButtonPressed(Button.A, function () {
+    x += -1
+    if (x < 0) {
+        x = 4
     }
-    return konecnyText
-}
-function Desifruj (text: string, posun: number) {
-    for (let j = 0; j <= text.length - 1; j++) {
-        konecnyText = "" + konecnyText + cipher.decryptCharacter(text.charAt(j), posun)
+    drawing.moveAt(x, y)
+})
+input.onPinPressed(TouchPin.P2, function () {
+    y += 1
+    if (y > 4) {
+        y = 0
     }
-    return konecnyText
-}
-let konecnyText = ""
-basic.showString("" + (Zasifruj("microbit", 5)))
+    drawing.moveAt(x, y)
+})
+input.onButtonPressed(Button.AB, function () {
+    drawing.toogleCursor(x, y)
+})
+input.onButtonPressed(Button.B, function () {
+    x += 1
+    if (x > 4) {
+        x = 0
+    }
+    drawing.moveAt(x, y)
+})
+input.onPinPressed(TouchPin.P1, function () {
+    drawing.redraw()
+})
+input.onGesture(Gesture.Shake, function () {
+    drawing.clear()
+})
+input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+    y += -1
+    if (y < 0) {
+        y = 4
+    }
+    drawing.moveAt(x, y)
+})
+basic.forever(function () {
+    drawing.blinkCursor(x, y)
+})
 ```
 
 
