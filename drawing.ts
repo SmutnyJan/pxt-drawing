@@ -50,7 +50,7 @@ namespace drawing {
     * @newX Zvolená souřadnice
     * @newY Zvolená souřadnice
     */
-    //% block="Přepne kurzor || na [%newX, %newY]"
+    //% block="Přepnout kurzor || na [%newX, %newY]"
 
     export function toogleCursor(newX?: number, newY?: number): void {
         if (newX == null) {
@@ -132,7 +132,7 @@ namespace drawing {
 
     function move(newX: number, newY: number): void {
         if (isCursorVisible) {
-            serial.writeLine(newX + "")
+            serial.writeLine("x: " + newX + " y: " + newY )
             if (previousState) {
                 led.plot(privateX, privateY)
             } else {
