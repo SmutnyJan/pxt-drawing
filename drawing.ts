@@ -132,7 +132,6 @@ namespace drawing {
 
     function move(newX: number, newY: number): void {
         if (isCursorVisible) {
-            serial.writeLine("x: " + newX + " y: " + newY )
             if (previousState) {
                 led.plot(privateX, privateY)
             } else {
