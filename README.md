@@ -71,7 +71,8 @@ move(newX: number, newY: number): void
 ### Malovaní za použití zkrácených verzí bloků
 
 #### Bloky
-![Jednoduchý příklad](https://github.com/SmutnyJan/pxt-drawing/images/easyexample.png)
+![Jednoduchý příklad](https://github.com/SmutnyJan/pxt-drawing/blob/master/images/easyexample.png)
+
 #### Kód
 ```
 input.onGesture(Gesture.TiltRight, function () {
@@ -103,7 +104,7 @@ basic.forever(function () {
 ### Malovaní za použití vlastních proměnných x a y
 
 #### Bloky
-![Těžší příklad](https://github.com/SmutnyJan/pxt-drawing/images/hardexample.png)
+![Těžší příklad](https://github.com/SmutnyJan/pxt-drawing/blob/master/images/hardexample.png)
 
 
 #### Kód
