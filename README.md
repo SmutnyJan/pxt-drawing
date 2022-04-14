@@ -65,6 +65,19 @@ move(newX: number, newY: number): void
     - souřadnice Y (číslo)
 - Bez návratové hodnoty
 
+## Enumy
+```
+enum MoveDirection {
+    //% block="Nahoru"
+    Up = 1,
+    //% block="Dolu"
+    Down = 2,
+    //% block="Doleva"
+    Left = 3,
+    //% block="Doprava"
+    Right = 4,
+}
+```
 
 ## Příklady
 
