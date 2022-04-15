@@ -85,19 +85,19 @@ enum MoveDirection {
 #### Kód
 ```
 input.onGesture(Gesture.TiltRight, function () {
-    drawing.moveInDirection(Smer.Doprava)
+    drawing.moveInDirection(MoveDirection.Right)
 })
 input.onGesture(Gesture.LogoDown, function () {
-    drawing.moveInDirection(Smer.Dolu)
+    drawing.moveInDirection(MoveDirection.Down)
 })
 input.onButtonPressed(Button.A, function () {
     drawing.toogleCursor()
 })
 input.onGesture(Gesture.TiltLeft, function () {
-    drawing.moveInDirection(Smer.Doleva)
+    drawing.moveInDirection(MoveDirection.Left)
 })
 input.onGesture(Gesture.LogoUp, function () {
-    drawing.moveInDirection(Smer.Nahoru)
+    drawing.moveInDirection(MoveDirection.Up)
 })
 input.onButtonPressed(Button.B, function () {
     drawing.clear()
